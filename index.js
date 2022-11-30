@@ -21,10 +21,15 @@ function populateGrid() {
         let tile2 = document.createElement("div");
         tile1.style.backgroundColor = "#1AFF1A";
         tile2.style.backgroundColor = "#1AFF1A";
-        tile1.classList.add(""+i+"A");
-        tile2.classList.add(""+i+"B");
+        tile1.setAttribute("id", ""+i+"A");
+        tile2.setAttribute("id", ""+i+"A");
+        tile1.classList.add("tile");
+        tile2.classList.add("tile");
         tile1.innerHTML = i;
         tile2.innerHTML = i;
+        tile1.addEventListener('click', function(){
+            console.log("clicked");
+        });
         tiles.push(tile1);
         tiles.push(tile2);
     }

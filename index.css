@@ -8,3 +8,8 @@
     height: 50px;
     width: 50px;
 }
+
+.tile{
+    background-color: transparent;
+    perspective: 1000px;
+}
