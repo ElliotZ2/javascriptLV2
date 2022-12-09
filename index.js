@@ -27,8 +27,8 @@ function populateGrid() {
         tile1.classList.add("tile");
         tile2.classList.add("tile");
         /*show innerhtml for testing*/
-        tile1.innerHTML = i;
-        tile2.innerHTML = i;
+        //tile1.innerHTML = i;
+        //tile2.innerHTML = i;
         tile1.addEventListener('click', function(){
             tileClick(tile1);
         });
@@ -51,10 +51,13 @@ function tileClick(tile) {
     if(correctTiles.includes(tile)) {//ignored correctly guessed tiles
         return;
     }
+    if(selectedTiles.includes(tile)) {
+        return;
+    }
     selectedTiles.push(tile);
     console.log(tile);
     //reveal the tile
-    
+    revealTile(tile);
     if(oneSelected==true) {
         let numberOne = "" + selectedTiles[0].id;
         let numberTwo = "" + selectedTiles[1].id;
@@ -73,6 +76,7 @@ function tileClick(tile) {
         oneSelected=false;
         unrevealTiles();
         attempts++;
+        //TODO add a sleep 1 sec
     }
     else{
         oneSelected=true;
@@ -89,7 +93,9 @@ function checkForWin() {
 function revealTile(tile) {
     let idNum=tile.id;
     idNum=idNum.charAt(0);
-    tile1.style.backgroundImage="images/"+idNum+".png";
+    idNum++;
+    tile.style.backgroundImage="url(images/"+idNum+".png)";
+    console.log("images/"+idNum+".png");
 }
 
 function unrevealTiles() {

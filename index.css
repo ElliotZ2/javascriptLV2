@@ -13,6 +13,7 @@
     background-color: rgb(166, 187, 255);
     perspective: 1000px;
     border-radius: 5px;
+    background-size: contain;
 }
 
 body{
