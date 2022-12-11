@@ -68,6 +68,6 @@ p{
 }
 
 #reset:hover{
-    background-color: aquamarine;
+    background-color: rgb(166, 187, 255);
     color: black;
 }

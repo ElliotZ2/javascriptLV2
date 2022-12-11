@@ -97,10 +97,10 @@ function checkForWin() {
         if(attempts==16) {
             scoreText+="cheater"
         }
-        else if(attempts<=26) {
+        else if(attempts<=30) {
             scoreText+="You did an excellent job!";
         }
-        else if(attempts<=42) {
+        else if(attempts<=46) {
             scoreText+="Good job! Keep trying for a better score!";
         }
         else{
