@@ -3,6 +3,7 @@ var correctTiles = [];
 var selectedTiles = [];
 var allTiles = [];
 var attempts = 0;
+var twoRevealed = false;
 
 function initialize() {
     populateGrid();
@@ -18,7 +19,7 @@ function populateGrid() {
     }
     console.log(positions);
 
-    gridElement = document.getElementById("gridwrapper");
+    gridElement = document.getElementById("grid");
     for(let i = 0; i < 8; i++) {
         let tile1 = document.createElement("div");
         let tile2 = document.createElement("div");
@@ -45,6 +46,7 @@ function populateGrid() {
         gridElement.appendChild(allTiles[index]);
         console.log(index);
     }
+    unrevealTiles();
 }
 
 function tileClick(tile) {
@@ -54,10 +56,14 @@ function tileClick(tile) {
     if(selectedTiles.includes(tile)) {
         return;
     }
+    if(twoRevealed) {
+        unrevealTiles();
+        twoRevealed=false;
+    }
     selectedTiles.push(tile);
-    console.log(tile);
-    //reveal the tile
     revealTile(tile);
+    attempts++;
+    updateScore();
     if(oneSelected==true) {
         let numberOne = "" + selectedTiles[0].id;
         let numberTwo = "" + selectedTiles[1].id;
@@ -74,9 +80,7 @@ function tileClick(tile) {
         }
         selectedTiles=[];
         oneSelected=false;
-        unrevealTiles();
-        attempts++;
-        //TODO add a sleep 1 sec
+        twoRevealed=true;
     }
     else{
         oneSelected=true;
@@ -86,7 +90,23 @@ function tileClick(tile) {
 function checkForWin() {
     if(correctTiles.length >= 16) {
         console.log("YOU WIN");
-        document.getElementById("wintext").innerHTML="YOU WIN!"
+        document.getElementById("wintext").innerHTML="YOU WIN!";
+        let scoreText = document.getElementById("score").innerHTML;
+        console.log(document.getElementById("score").innerHTML);
+        scoreText+=". ";
+        if(attempts==16) {
+            scoreText+="cheater"
+        }
+        else if(attempts<=26) {
+            scoreText+="You did an excellent job!";
+        }
+        else if(attempts<=42) {
+            scoreText+="Good job! Keep trying for a better score!";
+        }
+        else{
+            scoreText+="Were you even trying?";
+        }
+        document.getElementById("score").innerHTML = scoreText;
     }
 }
 
@@ -101,7 +121,11 @@ function revealTile(tile) {
 function unrevealTiles() {
     for(let i = 0; i < allTiles.length; i++) {
         if(!correctTiles.includes(allTiles[i])) {
-            allTiles[i].style.backgroundImage='none';
+            allTiles[i].style.backgroundImage="url(images/question.jpg)";
         }
     }
+}
+
+function updateScore() {
+    document.getElementById("score").innerHTML="Score: " + attempts;
 }

@@ -9,10 +9,18 @@
     <script src="index.js"></script>
 </head>
 <body onload="initialize()">
-    <div style="width: 100%; margin-bottom: 100px; height: 3px; background-image:linear-gradient(to right, rgb(255, 43, 43), rgb(137, 94, 215));"></div>
+    <div style="width: 100%; margin-bottom: 10px; height: 3px; background-image:linear-gradient(to right, rgb(255, 43, 43), rgb(137, 94, 215));"></div>
+    <div id="reset" onclick="window.location.reload();">Reset</div>
     <div id="gridwrapper">
-
+        <div id="grid"></div>
     </div>
     <h2 id="wintext"></h2>
+    <div>
+        <p id="score">The match game is an intense, competitive game where you are revealing images in a
+            desperate search for two that match. As you find matches, those images will be revealed, but
+            watch out! The computer is keeping track of the number of times you click and judging your
+            every move. Begin matching by clicking on any two tiles.
+        </p>
+    </div>
 </body>
 </html>
